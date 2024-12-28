@@ -336,6 +336,8 @@ struct sx127x_t {
 
   bool use_implicit_header;
 
+  void* user_context;
+
   void (*rx_callback)(sx127x *, uint8_t *, uint16_t);
 
   void (*tx_callback)(sx127x *);
@@ -371,6 +373,21 @@ struct sx127x_t {
  *         - SX127X_OK                   on success
  */
 int sx127x_create(void *spi_device, sx127x *result);
+
+/**
+ * @brief Set user context
+ *
+ * @param user_context Callback context that can be retrieved in callbacks
+ * @param device Pointer to variable to hold the device handle
+ */
+void sx127x_set_user_context(void *user_context, sx127x *device);
+
+/**
+ * @brief Get user context
+ *
+ * @param device Pointer to variable to hold the device handle
+ */
+void* sx127x_get_user_context(sx127x *device);
 
 /**
  * @brief Set operating mode.

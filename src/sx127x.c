@@ -557,6 +557,16 @@ int sx127x_create(void *spi_device, sx127x *result) {
   return SX127X_OK;
 }
 
+void sx127x_set_user_context(void *user_context, sx127x *device)
+{
+  device->user_context = user_context;
+}
+
+void* sx127x_get_user_context(sx127x *device)
+{
+  return device->user_context;
+}
+
 int sx127x_set_opmod(sx127x_mode_t opmod, sx127x_modulation_t modulation, sx127x *device) {
   // enforce DIO mappings for RX and TX
   if (modulation == SX127x_MODULATION_LORA) {
